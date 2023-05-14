@@ -1,0 +1,659 @@
+<!DOCTYPE html><html lang="zn-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Algorithm Design and Analysis-01 | 闲庭杂记</title><meta name="author" content="Confetti-lxy"><meta name="copyright" content="Confetti-lxy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="算法设计与分析课程的作业习题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm Design and Analysis-01">
+<meta property="og:url" content="http://blog.confetti-lxy.com/2023/04/28/Algorithm-Design-and-Analysis-01/index.html">
+<meta property="og:site_name" content="闲庭杂记">
+<meta property="og:description" content="算法设计与分析课程的作业习题">
+<meta property="og:locale" content="zn_CN">
+<meta property="og:image" content="http://blog.confetti-lxy.com/img/cover/cover-04.jpeg">
+<meta property="article:published_time" content="2023-04-28T03:15:04.000Z">
+<meta property="article:modified_time" content="2023-04-28T04:36:50.383Z">
+<meta property="article:author" content="Confetti-lxy">
+<meta property="article:tag" content="courses">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.confetti-lxy.com/img/cover/cover-04.jpeg"><link rel="shortcut icon" href="/img/common/favicon.ico"><link rel="canonical" href="http://blog.confetti-lxy.com/2023/04/28/Algorithm-Design-and-Analysis-01/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Algorithm Design and Analysis-01',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-28 12:36:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/common/avatar.png" onerror="onerror=null;src='/img/common/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/ADAA/ADAA-1.jpeg')"><nav id="nav"><span id="blog-info"><a href="/" title="闲庭杂记"><span class="site-name">闲庭杂记</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Algorithm Design and Analysis-01</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-04-28T03:15:04.000Z" title="Created 2023-04-28 11:15:04">2023-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-04-28T04:36:50.383Z" title="Updated 2023-04-28 12:36:50">2023-04-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BE%E7%A8%8B%EF%BC%9A%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">课程：算法设计与分析</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>19min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Algorithm Design and Analysis-01"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>这是对22-23年秋季学期南京大学算法设计与分析课程的书面作业，这边为徐经纬老师班的课程。
+本博客是按照章节对课程所布置的作业的个人的部分解答。
+注意：这不是非官方答案，不完全正确，仅适当参考。
+注意：请勿直接复制粘贴，否则后果自负。</p>
+<h5 id="三个数的中位数">1.2 三个数的中位数</h5>
+<ol type="1">
+<li>思路：遍历一遍三个数，同时找出最小值，最大值，和它们三个数的和，输出和减去最大值减去最小值的结果，即为三个数的中位数</li>
+</ol>
+<p>伪代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入x</span><br><span class="line">min=max=sum=x</span><br><span class="line"><span class="keyword">for</span> i := <span class="number">1</span> to <span class="number">2</span> <span class="keyword">do</span></span><br><span class="line">	输入x</span><br><span class="line">	<span class="keyword">if</span> x &lt; min then</span><br><span class="line">		min=x</span><br><span class="line">	<span class="keyword">if</span> x &gt; max then</span><br><span class="line">		max=x</span><br><span class="line">	sum += x</span><br><span class="line"><span class="keyword">return</span> sum-min-max</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li><p>最坏情况和平均情况下我的算法都需要进行4次比较
+第二和第三个输入分别和min和max比较</p></li>
+<li><p>最坏情况下至少进行4次比较 证明同上(2)</p></li>
+</ol>
+<h5 id="集合最小覆盖问题">1.3 集合最小覆盖问题</h5>
+<ol type="1">
+<li><p>U={1,2,3,4} S1={1,2}, S2={1,3}, S3={2,4}
+不妨假设同样大小的Si选择最靠前的那个
+按上述算法得出的最小覆盖为{S1,S2,S3} 而真正的最小覆盖为{S2,S3}</p></li>
+<li><p>算法： 记录所有数字在S中出现的次数 然后从S中删除
+所有元素次数大于1并且集合最小的Si 并把相应元素次数减一
+重复上述步骤，直到再也不能删除一个集合，此时的S为一个集合覆盖</p></li>
+</ol>
+<p>正确性证明：
+无论怎么删除都保证每个元素在覆盖中至少出现一次，即删除过的S是U的一个覆盖</p>
+<p>(3)不能 反例：U={1,2,3,4} S1={1,2} S2={3,4} S3={1,4} S4={2,4}
+按我的算法得出的最小覆盖是{S2,S3,S4} 而真正的最小覆盖是{S1,S2}</p>
+<h5 id="多项式计算">1.7多项式计算</h5>
+<p>数学归纳法： 1.n=0时 p=a[0]=a0 显然正确 2.假设n=k时正确，则当n=k+1时
+由n=k时正确可得 前k次循环(HORNER(A[1...k+1],x)后 <span
+class="math display">\[
+p=a_{k+1}x^{k}+a_{k}x^{k-1}...+a_{1}
+\]</span> 第k+1次循环p=p*x+A[0] 得 <span class="math display">\[
+p=a_{k+1}x^{k+1}+a_{k}x^{k}...+a_{1}x+a_{0}
+\]</span> n=k+1时得证 3.由数学归纳法可知算法正确</p>
+<h5 id="整数相乘">1.8整数相乘</h5>
+<p>(1)数学归纳法： 1.z=0时，返回值为0 显然成立
+2.假设z=k时算法正确，则当z=k+1时，返回值为 <span class="math display">\[
+\begin{array}
+INT\_MULT(2\cdot y,\lfloor \frac{k+1}{2} \rfloor)+y\cdot((k+1)\ mod\
+2)\\
+因为\lfloor \frac{k+1}{2} \rfloor \leq k，所以INT\_MULT函数返回值正确\\
+如果(k+1)mod\ 2为0，则返回值为INT\_MULT(2\cdot
+y,\frac{k+1}{2})等于y\cdot(k+1)即y\cdot z\\
+如果(k+1)mod\ 2为1，则返回值为INT\_MULT(2\cdot
+y,\frac{k}{2})+y等于y\cdot k+y\cdot k即y\cdot z\\
+z=k+1时得证
+\end{array}
+\]</span> 3.由数学归纳法可知算法正确</p>
+<p>(2)不妨设 <span class="math display">\[
+z/c=p \ \ \ \ z\ mod\ c =q\ 即z=cp+q
+\]</span> 数学归纳法： 1.z=0时，返回值为0 显然成立
+2.假设z=k时算法正确，则当z=k+1时，返回值为 <span class="math display">\[
+INT\_MULT(c\cdot y,\lfloor \frac{k+1}{c} \rfloor)+y\cdot((k+1)\ mod\ c)
+\]</span> <span class="math display">\[
+因为 c\geq 2\ \ 则\lfloor \frac{k+1}{c} \rfloor \leq
+k，所以INT\_MULT函数返回值正确
+\]</span> <span class="math display">\[
+=INT\_MULT(c\cdot y,p)+y\cdot q
+\]</span> <span class="math display">\[
+=cyp+yq=y(cp+q)=yz
+\]</span> z=k+1时得证 3.由数学归纳法可知算法正确</p>
+<h5 id="section">1.9</h5>
+<p>平均算法复杂度为O(n) <span class="math display">\[
+\frac{1}{4}\times10+\frac{1}{4}\times20+\frac{1}{4}\times30+\frac{1}{4}\times
+n=15+\frac{1}{4}n
+\]</span> ##### 1.10</p>
+<p>(1)最坏情况是所有元素都不相同 <span class="math display">\[
+\sum_{i=0}^{n-2}\sum_{j=i+1}^{n-1}1=\sum_{i=0}^{n-2}(n-i-1)=\frac{n(n-1)}{2}---O(n^2)
+\]</span> (2)设两个相等的元素在x位置和y位置 (y&gt;x) <span
+class="math display">\[
+\sum_{i=0}^{x-1}\sum_{j=i+1}^{n-1}1+y-x=\frac{2n-3}{2}x-\frac{x^2}{2}+y
+\]</span> <span class="math display">\[
+\frac{2}{n(n-1)}\sum_{x=0}^{n-2}\sum_{y=x+1}^{n-1}(\frac{2n-3}{2}x-\frac{x^2}{2}+y)
+\]</span> <span class="math display">\[
+第二个求和符号拆解后x^2项变成最高次项n^3，第一个求和符号拆解后变成n^4,所以最终结果为O(n^2)
+\]</span></p>
+<ol start="3" type="1">
+<li><span class="math display">\[
+P(x,y)=\frac{A_{k}^{y-1}k^{n-1-y}}{k^n}\ (y\le k)\\
+n\rightarrow \infty,i=0时能够找到相同的元素，所以复杂度为\Theta(k)
+\]</span></li>
+</ol>
+<h5 id="section-1">2.2</h5>
+<p><span class="math display">\[
+2^k\leq n\leq 2^{k+1}-1，k为自然数
+\]</span> <span class="math display">\[
+\lceil log(n+1)\rceil=k+1，  \lfloor logn\rfloor+1=k+1
+\]</span> <span class="math display">\[
+所以\lceil log(n+1)\rceil=\lfloor logn\rfloor+1
+\]</span></p>
+<h5 id="section-2">2.5</h5>
+<ol type="1">
+<li><span class="math display">\[
+n_{0}+n_{2}-1=2\times n_{2}
+\]</span> <span class="math display">\[
+n_{0}=n_{2}+1
+\]</span></li>
+</ol>
+<p>(2)满足 <span class="math display">\[
+n0+n1+n2-1=2\times n_{2}+n_{1}
+\]</span> <span class="math display">\[
+n_{0}=n_{2}+1
+\]</span></p>
+<h5 id="函数渐近增长率的基本性质">2.7函数渐近增长率的基本性质</h5>
+<ol type="1">
+<li><span class="math display">\[
+O:任意f(n)=O(g(n)),\ g(n)=O(h(n))
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+则\lim_{n \to \infty}\frac{f(n)}{g(n)}=c1&lt;\infty,\ \lim_{n \to
+\infty}\frac{g(n)}{h(n)}=c2&lt;\infty
+\]</span></p>
+<p><span class="math display">\[
+\lim_{n \to \infty}\frac{f(n)}{h(n)}=c1\cdot c2 &lt;\infty
+\]</span></p>
+<p><span class="math display">\[
+所以f(n)=O(h(n))，即O满足传递性
+\]</span></p>
+<p><span class="math display">\[
+\Omega:任意f(n)=\Omega(g(n)),\ g(n)=\Omega(h(n))
+\]</span></p>
+<p><span class="math display">\[
+则\lim_{n \to \infty}\frac{f(n)}{g(n)}=c1&gt;0,\ \lim_{n \to
+\infty}\frac{g(n)}{h(n)}=c2&gt;0
+\]</span></p>
+<p><span class="math display">\[
+\lim_{n \to \infty}\frac{f(n)}{h(n)}=c1\cdot c2&gt;0
+\]</span></p>
+<p><span class="math display">\[
+所以f(n)=\Omega(h(n))，即\Omega满足传递性
+\]</span> <span class="math display">\[
+\Theta:任意f(n)=\Theta(g(n)),\ g(n)=\Theta(h(n))
+\]</span></p>
+<p><span class="math display">\[
+则\lim_{n \to \infty}\frac{f(n)}{g(n)}=c1,\ \lim_{n \to
+\infty}\frac{g(n)}{h(n)}=c2,\ 0\le c1,c2\le \infty
+\]</span></p>
+<p><span class="math display">\[
+\lim_{n \to \infty}\frac{f(n)}{h(n)}=c1\cdot c2,\ 0\le c1\cdot c2 \le
+\infty
+\]</span></p>
+<p><span class="math display">\[
+所以f(n)=\Theta(h(n))，即\Theta满足传递性
+\]</span> <span class="math display">\[
+o:任意f(n)=o(g(n)),\ g(n)=o(h(n))
+\]</span></p>
+<p><span class="math display">\[
+则\lim_{n \to \infty}\frac{f(n)}{g(n)}=0,\ \lim_{n \to
+\infty}\frac{g(n)}{h(n)}=0
+\]</span></p>
+<p><span class="math display">\[
+\lim_{n \to \infty}\frac{f(n)}{h(n)}=0
+\]</span></p>
+<p><span class="math display">\[
+所以f(n)=o(h(n))，即o满足传递性
+\]</span> <span class="math display">\[
+\omega:任意f(n)=\omega(g(n)),\ g(n)=\omega(h(n))
+\]</span></p>
+<p><span class="math display">\[
+则\lim_{n \to \infty}\frac{f(n)}{g(n)}=\infty,\ \lim_{n \to
+\infty}\frac{g(n)}{h(n)}=\infty
+\]</span></p>
+<p><span class="math display">\[
+\lim_{n \to \infty}\frac{f(n)}{h(n)}=\infty
+\]</span></p>
+<p><span class="math display">\[
+所以f(n)=\omega(h(n))，即\omega满足传递性
+\]</span></p>
+<ol start="2" type="1">
+<li><span class="math display">\[
+O:\lim_{n \to \infty}\frac{f(n)}{f(n)}=1&lt;\infty
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+f(n)=O(f(n))\ 即O满足自反性
+\]</span></p>
+<p><span class="math display">\[
+\Omega:\lim_{n \to \infty}\frac{f(n)}{f(n)}=1&gt;0
+\]</span></p>
+<p><span class="math display">\[
+f(n)=\Omega(f(n))\ 即\Omega满足自反性
+\]</span></p>
+<p><span class="math display">\[
+\Theta:\lim_{n \to \infty}\frac{f(n)}{f(n)}=1,\ 0&lt;1&lt;\infty
+\]</span></p>
+<p><span class="math display">\[
+f(n)=\Theta(f(n))\ 即\Theta满足自反性
+\]</span> (3) <span class="math display">\[
+由(1)(2)知，\Theta满足传递性和自反性，要证\Theta是一个等价关系，只要证\Theta满足对称性
+\]</span></p>
+<p><span class="math display">\[
+对于任意f(n)=\Theta(g(n)),\ \lim_{n \to \infty}\frac{f(n)}{g(n)}=c,\
+0&lt;c&lt;\infty
+\]</span></p>
+<p><span class="math display">\[
+\lim_{n \to \infty}\frac{g(n)}{f(n)}=\frac{1}{c},\
+0&lt;\frac{1}{c}&lt;\infty,\ 即g(n)=\Theta(f(n)),\
+\Theta有对称性，原命题得证
+\]</span></p>
+<ol start="4" type="1">
+<li><span class="math display">\[
+f(n)=\Theta(g(n))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+\Leftrightarrow \lim_{n \to \infty}\frac{f(n)}{g(n)}=c,\
+0&lt;c&lt;\infty \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\
+\]</span></p>
+<p><span class="math display">\[
+\Leftrightarrow \lim_{n \to \infty}\frac{f(n)}{g(n)}=c&gt;0 \ and\
+\lim_{n \to \infty}\frac{f(n)}{g(n)}=c&lt;\infty
+\]</span></p>
+<p><span class="math display">\[
+\Leftrightarrow f(n)=O(g(n)),\ f(n)=\Omega(g(n)) \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \
+\]</span></p>
+<ol start="5" type="1">
+<li><span class="math display">\[
+f=o(g)\Leftrightarrow lim\frac{f}{g}=c&lt;\infty\Leftrightarrow
+lim\frac{g}{f}=\frac{1}{c} &gt;0\Leftrightarrow g=\Omega(f)
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+f=o(g)\Leftrightarrow lim\frac{f}{g}=0\Leftrightarrow
+lim\frac{g}{f}=\infty\Leftrightarrow g=\omega(f)
+\]</span></p>
+<ol start="6" type="1">
+<li><span class="math display">\[
+f=o(g),\ h=\omega(g)\Rightarrow lim\frac{f}{g}=0, \
+lim\frac{h}{g}=\infty\Rightarrow f\cap h=\emptyset
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+f=\Theta(g),\ h=o(g)\Rightarrow lim\frac{f}{g}=c(0&lt;c&lt;\infty), \
+lim\frac{h}{g}=0\Rightarrow f\cap h=\emptyset
+\]</span></p>
+<p><span class="math display">\[
+f=\Theta(g),\ h=\omega(g)\Rightarrow lim\frac{f}{g}=c(0&lt;c&lt;\infty),
+\ lim\frac{h}{g}=\infty\Rightarrow f\cap h=\emptyset
+\]</span></p>
+<h5 id="section-3">2.8</h5>
+<ol type="1">
+<li><span class="math display">\[
+logn&lt;n&lt;nlogn&lt;n^2\le n^2+logn&lt;n^3&lt;n-n^3+7n^5&lt;2^n
+\]</span></li>
+<li><span class="math display">\[
+loglogn&lt;lnn&lt;logn&lt;(logn)^2&lt;\sqrt n&lt;
+n&lt;nlogn&lt;n^{1+\epsilon}\\&lt;n^2\le
+n^2+logn&lt;n^3&lt;n-n^3+7n^5&lt;2^{n-1}\leq 2^n&lt;e^n&lt;n!
+\]</span></li>
+</ol>
+<h5 id="section-4">2.16</h5>
+<ol type="1">
+<li><span class="math display">\[
+E=log_{3}2,\ f(n)=1=O(n^{E-log_{3}2})
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+T(n)=\Theta(n^{log_{3}2})
+\]</span></p>
+<ol start="2" type="1">
+<li><span class="math display">\[
+P(n)=clogn+clog(\frac{n}{2})+...+clog(\frac{n}{2^k})
+\\
+k=logn
+,\ P(n)=\frac{c(k+1)*k}{2},T(n)=\Theta((logn)^2)
+\]</span></li>
+<li><span class="math display">\[
+E=0,f(n)=cn=\Omega(1)\\
+T(n)=\Theta(n)
+\]</span></li>
+<li><span class="math display">\[
+E=1,f(n)=cn=\Theta(n)\\
+T(n)=\Theta(nlogn)
+\]</span></li>
+<li><span class="math display">\[
+P(n)=cn[logn+log(\frac{n}{2})+...+log(\frac{n}{2^k})]\\
+k=logn,\ P(n)=\frac{cn(k+1)*k}{2},\ T(n)=\Theta(n(logn)^2)
+\]</span></li>
+<li><span class="math display">\[
+T(n)=3T(\frac{m}{3})+nlog_{3}n=nT(1)+n(log_{3}n+log_{3}\frac{n}{3}+...+log_{3}\frac{n}{3^k})=\Theta(n(log_{3}n)^2),\
+k=log_{3}n
+\]</span></li>
+<li><span class="math display">\[
+E=1,\ f(n)=cn^2=\Omega(n)\\
+T(n)=\Theta(n^2)
+\]</span></li>
+<li><span class="math display">\[
+E=log_{5}7,\ f(n)=n^{\frac{3}{2}}logn=\Omega(n)\\
+T(n)=\Theta(n^{\frac{3}{2}}logn)
+\]</span></li>
+<li><span class="math display">\[
+T(n)=T(1)+2\times(n-1)=2n-1=\Theta(n)
+\]</span></li>
+<li><span class="math display">\[
+T(n)=T(n-1)+n^c=T(n-2)+(n-1)^c+n^c=T(1)+\sum_{i=2}^{n}i^c=\Theta(n^{c+1})
+\]</span></li>
+<li><span class="math display">\[
+T(n)=T(n-1)+c^n=T(n-1)+c^{n-2}+c^n=T(1)+\frac{c^2(c^{n-1}-1)}{c-1}=\Theta(c^n)
+\]</span></li>
+<li><span class="math display">\[
+n为奇数,\ T(n)=T(n-2)+2n^3-3n^2+3n-1=T(1)+\Theta(n^4)\\
+n为偶数,\ T(n)=T(n-2)+2n^3-3n^2+3n-1=T(2)+\Theta(n^4)\\
+T(n)=\Theta(n^4)
+\]</span></li>
+<li><span class="math display">\[
+猜测T(n)=\Theta(n)\\
+T(n)&lt;=T(\frac{n}{2})+T(\frac{n}{4})+T(\frac{n}{8})+n=(\frac{7}{8}c+1)n\\
+当c&gt;=8,T(n)&lt;=cn,当c&lt;=8,T(n)&gt;=cn\\
+所以T(n)=\Theta(n)
+\]</span></li>
+</ol>
+<h5 id="section-5">2.18</h5>
+<p><span class="math display">\[
+T(n)=\sqrt nT(\sqrt n)+O(n)\\
+\frac{T(n)}{n}=\frac{T(\sqrt n)}{\sqrt n}+O(1)\\
+令S(n)=\frac{T(n)}{n},\ 则S(n)=S(\sqrt n)+O(1)\\
+令m=logn,\ R(m)=S(2^m)\\
+R(m)=R(\frac{m}{2})+O(1)\\
+R(m)=\Theta(logm),\ S(n)=\Theta(loglogn),\ T(n)=\Theta(nloglogn)
+\]</span></p>
+<h5 id="section-6">2.19</h5>
+<p><span class="math display">\[
+a=2,b=2,f(n)=nlogn
+\]</span></p>
+<h5 id="section-7">2.22</h5>
+<p>输出都是数组A中的最小元素 <span class="math display">\[
+ALG1:T(n)=T(n-1)+O(1)=\Theta(n)
+\]</span></p>
+<p><span class="math display">\[
+ALG2:T(n)=2T(\frac{n}{2})+O(1)=\Theta(n)
+\]</span></p>
+<h5 id="section-8">2.24</h5>
+<p>MYSTERY <span class="math display">\[
+\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\sum_{k=1}^{j}1=\sum_{i=1}^{n-1}\frac{(i+1+n)(n-i)}{2}=\frac{(n-1)n(n+1)}{3}---O(n^3)
+\]</span> PRESKY <span class="math display">\[
+\sum_{i=1}^{n}\sum_{j=1}^{i}\sum_{k=j}^{i+j}1=\sum_{i=1}^{n}i(i+1)=\frac{n(n+1)(n+2)}{3}---O(n^3)
+\]</span></p>
+<p>PRESTIFEROUS <span class="math display">\[
+\sum_{i=1}^{n}\sum_{j=1}^{i}\sum_{k=j}^{i+j}\sum_{l=1}^{i+j-k}1=\frac{n(n+1)(n+2)(3n+1)}{24}---O(n^4)
+\]</span> CONUNDRUM <span class="math display">\[
+\sum_{i=1}^{n}\sum_{j=i+1}^{n}\sum_{k=i+j-1}^{n}1=\frac{n(n+2)(2n-1)}{24}---O(n^3)
+\]</span></p>
+<h5 id="冒泡排序">3.2冒泡排序</h5>
+<p>(1)数学归纳法 1.n=2,ifA[0]&gt;A[1] then
+SWAP(A[0],A[1])，则A[1]&gt;=A[0],显然正确
+2.假设n=k时算法正确，则当n=k+1时 <span class="math display">\[
+i:=k+1，j:=1\ to\  k, if\  A[j]&gt;A[j+1] \ Then\ SWAP,\
+使得A[k]=\max_{0\le i \le k}A[i]\\
+i:=k\ to\ 2，由n=k时算法正确可得A[0]\le A[1]...\le A[k-1],\\
+综合i=k+1时的循环可得A[0]\le A[1]...\le A[k-1]\le A[k],
+所以n=k+1时算法正确
+\]</span> 3.由数学归纳法可得，冒泡排序正确</p>
+<p>(2)最坏情况和平均情况都是 <span class="math display">\[
+\sum_{i=2}^{n}\sum_{j=1}^{i-1}1=\frac{n(n-1)}{2}---O(n^2)
+\]</span> (3) <span class="math display">\[
+\begin{array}
+最坏情况原数组逆序，改进不影响比较次数，所以不会影响最坏情况的时间复杂度\\
+平均情况比较次数会减少，但是时间复杂度仍然是O(n^2)
+\end{array}
+\]</span></p>
+<h5 id="section-9">3.5</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Algorithm: PREVIOUS-<span class="built_in">LARGER</span>(A[<span class="number">1.</span>.n]) </span><br><span class="line"><span class="keyword">for</span> i:=<span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">    j:=i<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span> j&gt;<span class="number">0</span> <span class="keyword">and</span> A[j]&lt;=A[i] <span class="keyword">do</span></span><br><span class="line">    	j:=P[j];</span><br><span class="line">	P[i]:=j;</span><br><span class="line"><span class="keyword">return</span> P[<span class="number">1.</span>.n];</span><br></pre></td></tr></table></figure>
+<p>正确性证明： <span class="math display">\[
+\begin{array}
+原算法正确的前提下，循环中j=j-1向前遍历，如果j-1&gt;P[j],则A[j-1]\le
+A[j]\le A[i],\\
+直到j-1=P[j],\ 才有可能A[j-1]&gt;A[i],所以该算法肯定正确。
+\end{array}
+\]</span> 时间复杂度计算： <span class="math display">\[
+\begin{array}
+设计算P[i]的比较次数为k_{i}，此时P[1..i-1]已经计算完成\\
+若A[i-1]&gt;A[i],则k_{i}=1\\
+若A[i-1]\le
+A[i],则p[i]一定在p[0..i-1]中，则k_{i}&gt;1,p[i]=p[i-k_{i}+1]\\
+同理有k_{i+1}=1或k_{i+1}&gt;1且有关系k_{i+1}\le
+i-k_{i}+2,即k_{i}+k_{i+1}&lt;=i+2\\
+因为p[i+1]一定在p[1..i]中，p[i]=p[i-k_{i}+1]\\
+同理k_{i+m}=1，或k_{i+m}\le
+i-(k_{i}+...+k_{i+m})+m+1,即k_{i}+...+k_{i+m}\le i+m+1\\
+令i=2，m=n-2,则k_{2}+...+k_{n}\le n+1\\
+又k1=0,所以复杂度为\Theta(n)
+\end{array}
+\]</span></p>
+<h5 id="section-10">3.6</h5>
+<p>(1)所有的元素像右移动1个（最后一个移到第一个）移动n-k次完成位置调换</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Algorithm: POSITION-<span class="built_in">CHANGE</span>(A[<span class="number">1</span>,<span class="number">2</span>,...,n]) </span><br><span class="line"><span class="keyword">for</span> i:= <span class="number">1</span> to n-k <span class="keyword">do</span></span><br><span class="line">    temp := A[n];</span><br><span class="line">	<span class="keyword">for</span> j:=<span class="number">2</span> to n <span class="keyword">do</span></span><br><span class="line">        A[j]=A[j<span class="number">-1</span>];</span><br><span class="line">	A[<span class="number">0</span>]=A[n];</span><br><span class="line"><span class="keyword">return</span> A[<span class="number">1.</span>.n]</span><br></pre></td></tr></table></figure>
+<p>(2)所有元素A[i]放入B[(i-k)%n] 中，B[1..n]即为完成位置调换的结果</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Algorithm: POSITION-<span class="built_in">CHANGE</span>(A[<span class="number">1</span>,<span class="number">2</span>,...,n]) </span><br><span class="line">B[n] := &#123;<span class="number">0</span>&#125;</span><br><span class="line"><span class="keyword">for</span> i:= <span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">    B[(i-k)%n] := A[i]</span><br><span class="line"><span class="keyword">return</span> B[<span class="number">1.</span>.n]</span><br></pre></td></tr></table></figure>
+<p>(3)分别翻转1-k, k+1-n, 再整体翻转，结果即为完成位置调换的结果</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Algorithm: POSITION-<span class="built_in">CHANGE</span>(A[<span class="number">1</span>,<span class="number">2</span>,...,n]) </span><br><span class="line"><span class="built_in">reverse</span>(A,<span class="number">1</span>,k);</span><br><span class="line"><span class="built_in">reverse</span>(A,k+<span class="number">1</span>,n);</span><br><span class="line"><span class="built_in">reverse</span>(A,<span class="number">1</span>,n);</span><br><span class="line"><span class="keyword">return</span> A[<span class="number">1.</span>.n]</span><br></pre></td></tr></table></figure>
+<h5 id="微博名人问题">3.8微博名人问题</h5>
+<p>(1)可能有0或1个名人</p>
+<p>(2)思路：一开始所有人都可能是名人，然后对他们进行遍历，如果关注了别人，那么自己不是名人，如果没关注那个人那么那个人不是名人，如果这个人没有关注任何人，则对其他人进行遍历，如果其他人都关注了他，那么他是名人，如果有人没有关注他，那么所有人中没有名人。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Algorithm: MICROBLOG-<span class="built_in">CELEBRITY</span>(A[<span class="number">1</span>,<span class="number">2</span>,...,n]) </span><br><span class="line">flag:=<span class="literal">true</span></span><br><span class="line">possible:=&#123;<span class="literal">true</span>&#125;</span><br><span class="line"><span class="keyword">for</span> i:= <span class="number">1</span> to n <span class="keyword">do</span>    </span><br><span class="line">   <span class="keyword">if</span> possible[i] = <span class="literal">true</span> then</span><br><span class="line">     flag:= <span class="literal">true</span></span><br><span class="line">     <span class="keyword">for</span> j:= <span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">       <span class="keyword">if</span> j != i then        </span><br><span class="line">         <span class="keyword">if</span> A[i] has no j then</span><br><span class="line">            possible[j] := <span class="literal">false</span>;   </span><br><span class="line">         <span class="keyword">else</span> </span><br><span class="line">            flag := <span class="literal">false</span>; </span><br><span class="line">   <span class="keyword">if</span> flag = <span class="literal">true</span> then </span><br><span class="line">      <span class="keyword">for</span> k:=<span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">         <span class="keyword">if</span> k!=i <span class="keyword">and</span> A[k] has no i then</span><br><span class="line">              <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="最大和连续子序列">3.9最大和连续子序列</h5>
+<p>(1)遍历所有子串并求和</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Algorithm: MAXSUM-<span class="built_in">SUBARRAY</span>(A[<span class="number">1</span>,<span class="number">2</span>,...,n]) </span><br><span class="line">max := A[<span class="number">1</span>]; temp := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> i:= <span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">for</span> j:= i+<span class="number">1</span> to n <span class="keyword">do</span>    </span><br><span class="line">        <span class="keyword">for</span> k:= i to j <span class="keyword">do</span>     </span><br><span class="line">            temp := temp + A[k];</span><br><span class="line">        <span class="keyword">if</span> temp&gt;max then</span><br><span class="line">            max := temp;</span><br><span class="line">        temp := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">return</span> max;</span><br></pre></td></tr></table></figure>
+<p>(2)求和的时候用累加</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Algorithm: MAXSUM-<span class="built_in">SUBARRAY</span>(A[<span class="number">1</span>,<span class="number">2</span>,...,n]) </span><br><span class="line">max := A[<span class="number">1</span>]; temp := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> i:= <span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">for</span> j:= i+<span class="number">1</span> to n <span class="keyword">do</span>    </span><br><span class="line">        temp := temp + A[j]; </span><br><span class="line">        <span class="keyword">if</span> temp&gt;max then  </span><br><span class="line">           max := temp;   </span><br><span class="line">    temp:= <span class="number">0</span>; </span><br><span class="line"><span class="keyword">return</span> max;</span><br></pre></td></tr></table></figure>
+<p>(3)将数组平分，分别求出求出连续子序列的最大和，同时从中间元素开始分别向左和向右算出最大的和并相加，三个最大和中最大的就是整个数组中连续子序列的最大和</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Algorithm: MAXSUM-<span class="built_in">SUBARRAY</span>(A[<span class="number">1</span>,<span class="number">2</span>,...,k]) </span><br><span class="line">center := (k+<span class="number">1</span>)/<span class="number">2</span>;   </span><br><span class="line"><span class="keyword">if</span> center = <span class="number">0</span> then   </span><br><span class="line">   <span class="keyword">return</span> A[<span class="number">1</span>];</span><br><span class="line">leftmax := MAXSUM-<span class="built_in">SUBARRAY</span>(A[<span class="number">1</span>,<span class="number">2</span>,...,center<span class="number">-1</span>]) </span><br><span class="line">rightmax := MAXSUM-<span class="built_in">SUBARRAY</span>(A[center+<span class="number">1</span>,...,k]) </span><br><span class="line">midLmax := <span class="number">0</span>; midRmax := <span class="number">0</span>; temp := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> i:= center downto <span class="number">1</span> <span class="keyword">do</span>   </span><br><span class="line">   temp := temp+A[i];</span><br><span class="line">   <span class="keyword">if</span> temp &gt; midLmax then</span><br><span class="line">       midLmax := temp;</span><br><span class="line">temp := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> j:= center+<span class="number">1</span> to k <span class="keyword">do</span>   </span><br><span class="line">   temp := temp+A[j];</span><br><span class="line">   <span class="keyword">if</span> temp &gt; midRmax then</span><br><span class="line">        midRmax := temp;  </span><br><span class="line">midmax := midLmax+midRmax;  </span><br><span class="line"><span class="keyword">return</span> <span class="built_in">MAX</span>(leftmax,midmax,rightmax); </span><br></pre></td></tr></table></figure>
+<p>(4)遍历同时求和，如果和小于0就舍弃，记录过程中的最大和即为结果</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Algorithm: MAXSUM-<span class="built_in">SUBARRAY</span>(A[<span class="number">1</span>,<span class="number">2</span>,...,n]) </span><br><span class="line">max := A[<span class="number">1</span>]; temp := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> i:= <span class="number">1</span> to n <span class="keyword">do</span></span><br><span class="line">    temp := temp + A[i];</span><br><span class="line">    <span class="keyword">if</span> temp &gt; max then      </span><br><span class="line">          max := temp;</span><br><span class="line">    <span class="keyword">if</span> temp &lt; <span class="number">0</span> then </span><br><span class="line">          temp := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">return</span> max;</span><br></pre></td></tr></table></figure>
+<p>(5)dp[n]：以n为结尾的连续子序列的最大和，以dp[i] :=
+MAX(0,dp[i-1])+A[i]进行动态规划，答案为MAX(dp[i])</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Algorithm: MAXSUM-<span class="built_in">SUBARRAY</span>(A[<span class="number">1</span>,<span class="number">2</span>,...,n]) </span><br><span class="line">dp := &#123;<span class="number">0</span>&#125;; dp[<span class="number">1</span>] := A[<span class="number">1</span>]; max := A[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span> i:= <span class="number">2</span> to n <span class="keyword">do</span></span><br><span class="line">    dp[i] := <span class="built_in">MAX</span>(<span class="number">0</span>,dp[i<span class="number">-1</span>])+A[i]</span><br><span class="line">    max := <span class="built_in">MAX</span>(max, dp[i]);</span><br><span class="line"><span class="keyword">return</span> max;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Confetti-lxy">Confetti-lxy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://blog.confetti-lxy.com/2023/04/28/Algorithm-Design-and-Analysis-01/">http://blog.confetti-lxy.com/2023/04/28/Algorithm-Design-and-Analysis-01/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/courses/">courses</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/cover-04.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/04/28/Algorithm-Design-and-Analysis-02/" title="Algorithm Design and Analysis-02"><img class="cover" src="/img/cover/cover-12.jpeg" onerror="onerror=null;src='/img/common/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Algorithm Design and Analysis-02</div></div></a></div><div class="next-post pull-right"><a href="/2023/04/27/Hello-World/" title="Hello World"><img class="cover" src="/img/cover/cover-07.png" onerror="onerror=null;src='/img/common/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Hello World</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/04/28/Algorithm-Design-and-Analysis-02/" title="Algorithm Design and Analysis-02"><img class="cover" src="/img/cover/cover-12.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-28</div><div class="title">Algorithm Design and Analysis-02</div></div></a></div><div><a href="/2023/04/28/Algorithm-Design-and-Analysis-03/" title="Algorithm Design and Analysis-03"><img class="cover" src="/img/cover/cover-01.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-28</div><div class="title">Algorithm Design and Analysis-03</div></div></a></div><div><a href="/2023/04/29/plcs/" title="plcs"><img class="cover" src="/img/cover/cover-12.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-29</div><div class="title">plcs</div></div></a></div><div><a href="/2023/04/28/pstree/" title="pstree"><img class="cover" src="/img/cover/cover-03.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-28</div><div class="title">pstree</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/common/avatar.png" onerror="this.onerror=null;this.src='/img/common/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Confetti-lxy</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Confetti-lxy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Confetti-lxy" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3038454387@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">总要记些什么证明我来过</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E4%B8%AA%E6%95%B0%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">1.2 三个数的中位数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">1.3 集合最小覆盖问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E8%AE%A1%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text">1.7多项式计算</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%9B%B8%E4%B9%98"><span class="toc-number">4.</span> <span class="toc-text">1.8整数相乘</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#section"><span class="toc-number">5.</span> <span class="toc-text">1.9</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#section-1"><span class="toc-number">6.</span> <span class="toc-text">2.2</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#section-2"><span class="toc-number">7.</span> <span class="toc-text">2.5</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%B8%90%E8%BF%91%E5%A2%9E%E9%95%BF%E7%8E%87%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8"><span class="toc-number">8.</span> <span class="toc-text">2.7函数渐近增长率的基本性质</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#section-3"><span class="toc-number">9.</span> <span class="toc-text">2.8</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#section-4"><span class="toc-number">10.</span> <span class="toc-text">2.16</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#section-5"><span class="toc-number">11.</span> <span class="toc-text">2.18</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#section-6"><span class="toc-number">12.</span> <span class="toc-text">2.19</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#section-7"><span class="toc-number">13.</span> <span class="toc-text">2.22</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#section-8"><span class="toc-number">14.</span> <span class="toc-text">2.24</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">15.</span> <span class="toc-text">3.2冒泡排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#section-9"><span class="toc-number">16.</span> <span class="toc-text">3.5</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#section-10"><span class="toc-number">17.</span> <span class="toc-text">3.6</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BE%AE%E5%8D%9A%E5%90%8D%E4%BA%BA%E9%97%AE%E9%A2%98"><span class="toc-number">18.</span> <span class="toc-text">3.8微博名人问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E5%92%8C%E8%BF%9E%E7%BB%AD%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">19.</span> <span class="toc-text">3.9最大和连续子序列</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/05/14/Home-Credit-Default-Risk/" title="Home-Credit-Default-Risk"><img src="/img/cover/cover-14.jpeg" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="Home-Credit-Default-Risk"/></a><div class="content"><a class="title" href="/2023/05/14/Home-Credit-Default-Risk/" title="Home-Credit-Default-Risk">Home-Credit-Default-Risk</a><time datetime="2023-05-14T10:36:42.000Z" title="Created 2023-05-14 18:36:42">2023-05-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/14/decision-tree/" title="decision-tree"><img src="/img/cover/cover-01.png" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="decision-tree"/></a><div class="content"><a class="title" href="/2023/05/14/decision-tree/" title="decision-tree">decision-tree</a><time datetime="2023-05-14T05:55:12.000Z" title="Created 2023-05-14 13:55:12">2023-05-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/12/pytorch-learn-01/" title="pytorch-learn-01"><img src="/img/cover/cover-01.png" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="pytorch-learn-01"/></a><div class="content"><a class="title" href="/2023/05/12/pytorch-learn-01/" title="pytorch-learn-01">pytorch-learn-01</a><time datetime="2023-05-12T15:25:52.000Z" title="Created 2023-05-12 23:25:52">2023-05-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/12/pytorch-learn-00/" title="pytorch-learn-00"><img src="/img/cover/cover-12.jpeg" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="pytorch-learn-00"/></a><div class="content"><a class="title" href="/2023/05/12/pytorch-learn-00/" title="pytorch-learn-00">pytorch-learn-00</a><time datetime="2023-05-12T15:10:52.000Z" title="Created 2023-05-12 23:10:52">2023-05-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/29/plcs/" title="plcs"><img src="/img/cover/cover-12.jpeg" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="plcs"/></a><div class="content"><a class="title" href="/2023/04/29/plcs/" title="plcs">plcs</a><time datetime="2023-04-29T15:53:13.000Z" title="Created 2023-04-29 23:53:13">2023-04-29</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/ADAA/ADAA-1.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Confetti-lxy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">世界很大,我想去看看</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

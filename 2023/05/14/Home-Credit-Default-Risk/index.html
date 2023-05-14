@@ -1,0 +1,575 @@
+<!DOCTYPE html><html lang="zn-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Home-Credit-Default-Risk | 闲庭杂记</title><meta name="author" content="Confetti-lxy"><meta name="copyright" content="Confetti-lxy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据科学与数据分析-大作业">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Home-Credit-Default-Risk">
+<meta property="og:url" content="http://blog.confetti-lxy.com/2023/05/14/Home-Credit-Default-Risk/index.html">
+<meta property="og:site_name" content="闲庭杂记">
+<meta property="og:description" content="数据科学与数据分析-大作业">
+<meta property="og:locale" content="zn_CN">
+<meta property="og:image" content="http://blog.confetti-lxy.com/img/cover/cover-14.jpeg">
+<meta property="article:published_time" content="2023-05-14T10:36:42.000Z">
+<meta property="article:modified_time" content="2023-05-14T12:30:41.944Z">
+<meta property="article:author" content="Confetti-lxy">
+<meta property="article:tag" content="projects">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.confetti-lxy.com/img/cover/cover-14.jpeg"><link rel="shortcut icon" href="/img/common/favicon.ico"><link rel="canonical" href="http://blog.confetti-lxy.com/2023/05/14/Home-Credit-Default-Risk/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Home-Credit-Default-Risk',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-14 20:30:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/common/avatar.png" onerror="onerror=null;src='/img/common/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/project/Pro-2.jpeg')"><nav id="nav"><span id="blog-info"><a href="/" title="闲庭杂记"><span class="site-name">闲庭杂记</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Home-Credit-Default-Risk</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-14T10:36:42.000Z" title="Created 2023-05-14 18:36:42">2023-05-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-14T12:30:41.944Z" title="Updated 2023-05-14 20:30:41">2023-05-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/project-work/">project-work</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>20min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Home-Credit-Default-Risk"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr />
+<p><strong>Timely return of a Loan Makes it Easier to Borrow a Second
+Time</strong></p>
+<hr />
+<p>This is the idea and realization of the big assignment of data
+science and data analysis.</p>
+<p>Our selected topics are：<a
+target="_blank" rel="noopener" href="https://www.kaggle.com/competitions/home-credit-default-risk/leaderboard"
+class="uri">https://www.kaggle.com/competitions/home-credit-default-risk/leaderboard</a></p>
+<p>We all know that loans have been a very important part in the lives
+of a vast majority of people since the introduction of money over the
+barter system. People have different motivations behind applying for a
+loan : somebody may want to buy a house, buy a car or two-wheeler or
+even start a business, or a personal loan. The ‘Lack of Money’ is a
+massive assumption that people make why somebody applies for a loan,
+whereas multiple researches suggest that this is not the case. Even
+wealthy people prefer taking loans over spending liquid cash so as to
+make sure that they have enough reserve funds for emergency needs.
+Another massive incentive is the Tax Benefits that come with some
+loans.</p>
+<p>Note that loans are as important to lenders as they are for
+borrowers. The income itself of any lending financial institution is the
+difference between the high interest rates of loans and the
+comparatively much lower interests on the interest rates offered on the
+investors accounts. One obvious fact in this is that the lenders make
+profit only when a particular loan is repaid, and is not delinquent.
+When a borrower doesn’t repay a loan for more than a certain number of
+days, the lending institution considers that loan to be Written-Off.
+This basically means that even though the bank tries its best to carry
+out loan recoveries, it doesn’t expect the loan to be repaid anymore,
+and these are now termed as ‘Non-Performing Assets’ (NPAs). Eg : In case
+of the Home Loans, a common assumption is that loans that are delinquent
+above 720 days are written off, and they are not considered a part of
+the active portfolio size.</p>
+<p>Therefore, in this series of blogs, we will try to build a Machine
+Learning Solution that is going to predict the probability of an
+applicant repaying a loan given a set of features or columns in our
+dataset : We will cover the journey from understanding the Business
+Problem to carrying out the ‘Exploratory Data Analysis’, followed by
+preprocessing, feature engineering, modelling, and deployment to the
+local machine. I know, I know, it’s a lot of stuff and given the size
+and complexity of our datasets coming from multiple tables, it is going
+to take a while. So please stick with me till the end. ;)</p>
+<h2 id="problem-description">Problem Description</h2>
+<p>Many people struggle to get loans due to insufficient or non-existent
+credit histories. And, unfortunately, this population is often taken
+advantage of by untrustworthy lenders.</p>
+<p>Home Credit strives to broaden financial inclusion for the unbanked
+population by providing a positive and safe borrowing experience. In
+order to make sure this underserved population has a positive loan
+experience, Home Credit makes use of a variety of alternative
+data--including telco and transactional information--to predict their
+clients' repayment abilities.</p>
+<p>While Home Credit is currently using various statistical and machine
+learning methods to make these predictions, they're challenging Kagglers
+to help them unlock the full potential of their data. Doing so will
+ensure that clients capable of repayment are not rejected and that loans
+are given with a principal, maturity, and repayment calendar that will
+empower their clients to be successful.</p>
+<p>Obviously, this is a massive problem to many banks and financial
+institutions, and this is the reason why these institutions are
+extremely selective in rolling out loans : A vast majority of the loan
+applications are rejected. This is primarily because of insufficient or
+non-existent credit histories of the applicant, who are consequently
+forced to turn to untrustworthy lenders for their financial needs, and
+are at the risk of being taken advantage of, mostly with unreasonably
+high rates of interest.</p>
+<p>In order to address this issue, ‘Home Credit’ uses a lot of data
+(including both Telco Data as well as Transactional Data) to predict the
+loan repayment abilities of the applicants. If an applicant is deemed
+fit to repay a loan, his application is accepted, and it is rejected
+otherwise. This will ensure that the applicants having the capability of
+loan repayment do not have their applications rejected.</p>
+<p>Therefore, in order to deal with such kind of issues, we are trying
+to come up with a system through which a lending institution can come up
+with a way to estimate the loan repayment ability of a borrower, and at
+the end making this a win-win situation for everybody.</p>
+<p>Can you predict each applicant's ability to repay the loan? Many
+people have difficulty obtaining loans due to inadequate or non-existent
+credit histories. And, unfortunately, these people are often taken
+advantage of by unreliable lenders, such as loan sharks and school
+loans.</p>
+<p>Gitzo strives to expand financial inclusion for the unbanked
+population. To ensure that these underserved populations have a positive
+lending experience, Gitzo uses a variety of proxy data (including
+telecommunications and transaction information) to predict a customer's
+ability to repay.</p>
+<p>Home Credit Gitzo is currently using a variety of statistical and
+machine learning methods to make these predictions to help them unlock
+the full potential of their data. Doing so will ensure that customers
+who are able to repay their loans are not denied and that the principal
+amount, maturity date and repayment calendar of the loan will enable
+their customers to succeed.</p>
+<h2 id="data-set-description">Data set description</h2>
+<p>A massive problem when it comes to obtaining financial datasets are
+the security concerns that arise with sharing them on a public platform.
+However, in order to motivate machine learning practitioners to come up
+with innovative techniques to build a predictive model, all of us should
+be really thankful to ‘Home Credit’ because collecting data of such
+variance is not an easy task. ‘Home Credit’ has done wonders over here
+and provided us with a dataset that is thorough and pretty clean.</p>
+<p>‘Home Credit’ Group is a 24 year old lending agency (founded in 1997)
+that provides Consumer Loans to its customers, and has operations in 9
+countries in total. They entered the Indian Market in 2012 and have
+served more than 10 Million Consumers in the country. In order to
+motivate ML Engineers to construct efficient models, they have devised a
+Kaggle Competition for the same task. <strong>Their motto is to empower
+undeserved customers (by which they mean customers with little or no
+credit history present) by enabling them to borrow both easily as well
+as safely, both online as well as offline.</strong></p>
+<p>Note that the dataset that has been shared with us is very
+comprehensive and contains a lot of information about the borrowers. The
+data is segregated in multiple text files that are related to each other
+such as in the case of a Relational Database. The datasets contain
+extensive features such as the type of loan, gender, occupation as well
+as income of the applicant, whether he/she owns a car or real estate, to
+name a few. It also consists of the past credit history of the
+applicant.</p>
+<p>We have a column called ‘SK_ID_CURR’, which acts as the input that we
+take to make the default predictions, and our problem at hand is a
+‘Binary Classification Problem’, because given the Applicant’s
+‘SK_ID_CURR’ (present ID), our task is to predict 1 (if we think our
+applicant is a defaulter), and 0 (if we think our applicant is not a
+defaulter).</p>
+<p><strong>application_{train|test}.csv</strong></p>
+<ul>
+<li>This is the main table, broken into two files for Train (with
+TARGET) and Test (without TARGET).</li>
+<li>Static data for all applications. One row represents one loan in our
+data sample.</li>
+</ul>
+<p><strong>bureau.csv</strong></p>
+<ul>
+<li>All client's previous credits provided by other financial
+institutions that were reported to Credit Bureau (for clients who have a
+loan in our sample).</li>
+<li>For every loan in our sample, there are as many rows as number of
+credits the client had in Credit Bureau before the application
+date.</li>
+</ul>
+<p><strong>bureau_balance.csv</strong></p>
+<ul>
+<li>Monthly balances of previous credits in Credit Bureau.</li>
+<li>This table has one row for each month of history of every previous
+credit reported to Credit Bureau – i.e the table has (#loans in sample *
+# of relative previous credits * # of months where we have some history
+observable for the previous credits) rows.</li>
+</ul>
+<p><strong>POS_CASH_balance.csv</strong></p>
+<ul>
+<li>Monthly balance snapshots of previous POS (point of sales) and cash
+loans that the applicant had with Home Credit.</li>
+<li>This table has one row for each month of history of every previous
+credit in Home Credit (consumer credit and cash loans) related to loans
+in our sample – i.e. the table has (#loans in sample * # of relative
+previous credits * # of months in which we have some history observable
+for the previous credits) rows.</li>
+</ul>
+<p><strong>credit_card_balance.csv</strong></p>
+<ul>
+<li>Monthly balance snapshots of previous credit cards that the
+applicant has with Home Credit.</li>
+<li>This table has one row for each month of history of every previous
+credit in Home Credit (consumer credit and cash loans) related to loans
+in our sample – i.e. the table has (#loans in sample * # of relative
+previous credit cards * # of months where we have some history
+observable for the previous credit card) rows.</li>
+</ul>
+<p><strong>previous_application.csv</strong></p>
+<ul>
+<li>All previous applications for Home Credit loans of clients who have
+loans in our sample.</li>
+<li>There is one row for each previous application related to loans in
+our data sample.</li>
+</ul>
+<p><strong>installments_payments.csv</strong></p>
+<ul>
+<li>Repayment history for the previously disbursed credits in Home
+Credit related to the loans in our sample.</li>
+<li>There is a) one row for every payment that was made plus b) one row
+each for missed payment.</li>
+<li>One row is equivalent to one payment of one installment OR one
+installment corresponding to one payment of one previous Home Credit
+credit related to loans in our sample.</li>
+</ul>
+<p><em>The Negative Class(0) refers to Non- Defaulters whereas the
+Positive Class (1) refers to the Defaulters in the dataset.</em></p>
+<p>Our Dataset schema looks as follows:</p>
+<p><img src="/image/Home-Credit-Default-Risk/hcdr-01.png" /></p>
+<p>As we can see from above, we have a total of 8 datasets in total.</p>
+<h2 id="needs-and-objectives">Needs and Objectives</h2>
+<p>Now, since we have understood the Datasets as well as the task at
+hand, we need to be able to identify the associated business objectives
+and constraints for the problem at hand. This is extremely important
+before we move forward, because this would determine the kind of
+solution that we need to develop.</p>
+<p>The objective or our task at hand is to identify the potential
+defaulters based on the data given about the applicants. We can, of
+course, create new features on top of the existing features.</p>
+<h3 id="constraints">Constraints</h3>
+<ul>
+<li><strong>Interpretability is Important</strong></li>
+</ul>
+<p>This means that we should be able to generate the Probability
+Estimates, of an applicant being capable or not capable of repayment of
+a loan, rather than strictly classifying the applicant as either of
+them. However, interpretability of the model is not as important as in
+the case of Medical Applications like Cancer Diagnosis.</p>
+<p>Eg: If probability is 0.5 for an applicant’s capability and 0.9 in
+the other case, we can very well conclude that we are much more sure of
+the capability when the value is 0.9 (and classified as 1) rather than
+when the value is 0.5 (and then classified as 1).</p>
+<ul>
+<li><strong>High Misclassification Cost</strong></li>
+</ul>
+<p>This is a very important real world metric that needs to be
+considered because our cost of misclassification can be very high.</p>
+<p>If a loan applicant who is not capable of loan repayment is
+classified as capable and he/she is granted a loan, and in case he/she
+is unable to repay the loan, the bank or financial institution runs into
+delinquencies and may suffer losses, which could even have to be Written
+Off.</p>
+<p>Similarly, if a capable applicant is classified as non-capable, the
+person has his/her application rejected and the Bank loses out on a
+customer, which affects their profits.</p>
+<h2 id="problem-analysis">Problem Analysis</h2>
+<p>We can formulate the Machine Learning Problem, which would adhere to
+the objectives and constraints that we have defined.</p>
+<p>The dataset that we have has both the features as well as the class
+label (Target), and we have to predict the corresponding class labels (0
+or 1). This basically means that this is a Supervised Learning Binary
+Classification Problem.</p>
+<p>When we carry out the Exploratory Data Analysis, we will be able to
+see that our dataset is highly imbalanced, which means that we have to
+take this imbalance into account while we decide the performance metric
+that we are going to use.</p>
+<h3 id="performance-metrics">Performance Metrics</h3>
+<p><strong>ROC_AUC Score :</strong> In this particular Kaggle
+Competition, note that the ROC_AUC Score is the performance metric that
+has been chosen to be optimised by the organisers. An ROC Curve is
+insensitive to class imbalance and the ROC Curve is the most commonly
+used method to visualise the performance of a Binary Classifier
+(plotting for the <em>True Positive Rate</em> and <em>False Positive
+Rate</em> Values for a particular threshold). The ROC_AUC Score is one
+of the best ways to summarise the model performance in a single number.
+The higher this score, better is the model performance. T<em>his is
+going to be our primary performance metric in this case study.</em></p>
+<p><strong>Confusion Matrix :</strong> A Confusion Matrix can be
+constructed on both the Binary as well as Multi-class classification
+scenarios, and is a very good visual representation to get an overview
+of all the predictions made on a particular class by a model. It
+accurately shows the correct classifications as well as the
+misclassifications made by a model.</p>
+<p><img src="/image/Home-Credit-Default-Risk/hcdr-02.webp" /></p>
+<p>We want to maximise the number of datapoints belonging to the Blue
+cells, and minimise the number of datapoints that are belonging to the
+Red cells.</p>
+<p><em>Now, with the help of the Confusion Matrix, we can also take a
+look at a couple of more performance metrics, which will be now much
+easier to visualise.</em></p>
+<ul>
+<li><strong>Precision Score :</strong> The Precision Score is defined as
+the ratio of True Positives (that are predicted by the model) and the
+total number of actual positives. The total number of actual positives
+is the summation of TP and FP (ie. Column 2) in the above Confusion
+Matrix Diagram.</li>
+</ul>
+<p><img src="/image/Home-Credit-Default-Risk/hcdr-03.webp" /></p>
+<ul>
+<li><strong>Recall Score :</strong> The Recall Score is defined as the
+ratio of True Positives and the Actual Positives for a model. The total
+number of actual positives is the summation of TP and FN (ie. Row 2) in
+the above Confusion Matrix Diagram.</li>
+</ul>
+<p>We also need to remember another important fact that we want to
+minimise the number of False Negatives in our prediction, which means
+people who actually are defaulters and we are predicting them to be
+non-defaulters. This is a business need because the cost of making such
+an error could be very high to the bank:- the probability of delinquency
+will increase. On the other hand, the number of False Positives is of
+much lesser significance : Even if a Non-Defaulter is predicted by the
+model to be a defaulter, it mostly will not lead to huge business loss
+for the bank, since the applicant can reapply, and could receive a loan
+after human interference.</p>
+<h2 id="specific-ideas">Specific ideas</h2>
+<h3 id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+<p><em>In statistics,</em> <strong>Exploratory Data Analysis</strong>
+<em>is an approach of analysing datasets to summarise their main
+characteristics, often using statistical graphics and other data
+visualisation methods.</em></p>
+<p>Note that ‘Exploratory Data Analysis’ is one of the most important
+and critical parts of the Machine Learning pipeline : Without
+understanding of the data, we would not be able to make sense of the
+data, preprocess the data if needed, make a strategy to deal with
+missing values and outliers, and thus affecting our model prediction.
+Even though Feature Engineering is the core of a Machine Learning Model,
+EDA is underrated and its importance is undermined by a vast
+majority.</p>
+<p>Here, we create a data preprocessing class and construct some more
+useful class functions to help us further preprocess the data:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Overview:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    对数据的总体观测,包含以下的类成员和函数:</span><br><span class="line">    self.df: 导入到pandas表格, 后续的处理函数都是对self.df进行处理的</span><br><span class="line">    self.reduce_memory_usage(df): 压缩df表格占用的内存大小</span><br><span class="line">    self.read_dataframe(path): 从path路径导入csv表格成为self.df,并打印前几行</span><br><span class="line">    self.frame_view(): 查看self.df的大致属性</span><br><span class="line">    self.frame_type_view(): 查看self.df的列的属性</span><br><span class="line">    self.missing_values_table(): 查看self.df的列的缺失值情况</span><br><span class="line">    self.summaryView(): 对self.df进行以上3个函数的处理</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    def __init__(self, path=None):</span><br><span class="line">        if path is not None:</span><br><span class="line">            self.df = pd.read_csv(path, encoding=&quot;utf-8&quot;)</span><br><span class="line">        else:</span><br><span class="line">            self.df = None</span><br></pre></td></tr></table></figure>
+<p>Now there are a total of 8 datasets, that we import one by one, take
+a look at the general information in each table. This is done as follows
+:</p>
+<p>The following table reading functions, table compression functions
+and table overview functions are available：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">def reduce_memory_usage(self, df):</span><br><span class="line">    start_mem = df.memory_usage().sum() / 1024**2</span><br><span class="line">    print(&#x27;Memory usage of dataframe is &#123;:.2f&#125; MB&#x27;.format(start_mem))</span><br><span class="line">    for col in df.columns:</span><br><span class="line">        col_type = df[col].dtype</span><br><span class="line">        if col_type != object:</span><br><span class="line">            c_min = df[col].min()</span><br><span class="line">            c_max = df[col].max()</span><br><span class="line">            if str(col_type)[:3] == &#x27;int&#x27;:</span><br><span class="line">                if c_min &gt; np.iinfo(np.int8).min and c_max &lt; np.iinfo(np.int8).max:</span><br><span class="line">                    df[col] = df[col].astype(np.int8)</span><br><span class="line">                elif c_min &gt; np.iinfo(np.int16).min and c_max &lt; np.iinfo(np.int16).max:</span><br><span class="line">                    df[col] = df[col].astype(np.int16)</span><br><span class="line">                elif c_min &gt; np.iinfo(np.int32).min and c_max &lt; np.iinfo(np.int32).max:</span><br><span class="line">                    df[col] = df[col].astype(np.int32)</span><br><span class="line">                elif c_min &gt; np.iinfo(np.int64).min and c_max &lt; np.iinfo(np.int64).max:</span><br><span class="line">                    df[col] = df[col].astype(np.int64)</span><br><span class="line">            else:</span><br><span class="line">                if c_min &gt; np.finfo(np.float16).min and c_max &lt; np.finfo(np.float16).max:</span><br><span class="line">                    df[col] = df[col].astype(np.float16)</span><br><span class="line">                elif c_min &gt; np.finfo(np.float32).min and c_max &lt; np.finfo(np.float32).max:</span><br><span class="line">                    df[col] = df[col].astype(np.float32)</span><br><span class="line">                else:</span><br><span class="line">                    df[col] = df[col].astype(np.float64)</span><br><span class="line">    end_mem = df.memory_usage().sum() / 1024**2</span><br><span class="line">    print(&#x27;Memory usage after optimization is: &#123;:.2f&#125; MB&#x27;.format(end_mem))</span><br><span class="line">    print(&#x27;Decreased by &#123;:.1f&#125;%&#x27;.format(</span><br><span class="line">        100 * (start_mem - end_mem) / start_mem))</span><br><span class="line">    return df</span><br><span class="line"></span><br><span class="line">def read_dataframe(self, path):</span><br><span class="line">    self.df = pd.read_csv(path, encoding=&quot;utf-8&quot;)</span><br><span class="line">    print(self.df.head())</span><br><span class="line">    print(&quot;--------------------------------&quot;)</span><br><span class="line">    print(&quot;\033[0;31;40m the dataframe has been read \033[0m&quot;)</span><br><span class="line"></span><br><span class="line">def frame_view(self):</span><br><span class="line">    if self.df is None:</span><br><span class="line">        print(&quot;\033[0;31;40m please read the dataframe first \033[0m&quot;)</span><br><span class="line">        return</span><br><span class="line">    print(&quot;---------------------------------&quot;)</span><br><span class="line">    print(&#x27;\033[0;31;40m data shape is \033[0m&#x27;, self.df.shape)</span><br><span class="line">    print(self.df.describe())</span><br><span class="line">    print(self.df.info())</span><br><span class="line">    print(&quot;---------------------------------&quot;)</span><br></pre></td></tr></table></figure>
+<p>The following is an overview of the data from these functions for the
+8 tables：</p>
+<ul>
+<li>Train Dataset</li>
+<li>Test Dataset</li>
+<li>Bureau Dataset</li>
+<li>Bureau Balance Dataset</li>
+<li>Previous Application Dataset</li>
+<li>POS Cash Balance Dataset</li>
+<li>Installments Payments Dataset</li>
+<li>Credit Card Balance Dataset</li>
+</ul>
+<p>From this, we would be able to appreciate the sense of how
+comprehensive the data is, and how it contains hundreds of raw features.
+The main train and test datasets are the
+<em>‘application_train.csv’</em> and the
+<em>‘application_test.csv’</em>, which contain the applicant information
+for the clients who have applied for the loan at present. As we have
+seen in the dataset schema, the column ‘SK_ID_CURR’ acts as the foreign
+key in the other dataset tables. We are going to use this column to
+carry out any joins with the other tables.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Confetti-lxy">Confetti-lxy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://blog.confetti-lxy.com/2023/05/14/Home-Credit-Default-Risk/">http://blog.confetti-lxy.com/2023/05/14/Home-Credit-Default-Risk/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/projects/">projects</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/cover-14.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/05/14/decision-tree/" title="decision-tree"><img class="cover" src="/img/cover/cover-01.png" onerror="onerror=null;src='/img/common/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">decision-tree</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/common/avatar.png" onerror="this.onerror=null;this.src='/img/common/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Confetti-lxy</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Confetti-lxy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Confetti-lxy" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3038454387@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">总要记些什么证明我来过</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#problem-description"><span class="toc-number">1.</span> <span class="toc-text">Problem Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-set-description"><span class="toc-number">2.</span> <span class="toc-text">Data set description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#needs-and-objectives"><span class="toc-number">3.</span> <span class="toc-text">Needs and Objectives</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#constraints"><span class="toc-number">3.1.</span> <span class="toc-text">Constraints</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#problem-analysis"><span class="toc-number">4.</span> <span class="toc-text">Problem Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#performance-metrics"><span class="toc-number">4.1.</span> <span class="toc-text">Performance Metrics</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#specific-ideas"><span class="toc-number">5.</span> <span class="toc-text">Specific ideas</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#exploratory-data-analysis"><span class="toc-number">5.1.</span> <span class="toc-text">Exploratory Data Analysis</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/05/14/Home-Credit-Default-Risk/" title="Home-Credit-Default-Risk"><img src="/img/cover/cover-14.jpeg" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="Home-Credit-Default-Risk"/></a><div class="content"><a class="title" href="/2023/05/14/Home-Credit-Default-Risk/" title="Home-Credit-Default-Risk">Home-Credit-Default-Risk</a><time datetime="2023-05-14T10:36:42.000Z" title="Created 2023-05-14 18:36:42">2023-05-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/14/decision-tree/" title="decision-tree"><img src="/img/cover/cover-01.png" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="decision-tree"/></a><div class="content"><a class="title" href="/2023/05/14/decision-tree/" title="decision-tree">decision-tree</a><time datetime="2023-05-14T05:55:12.000Z" title="Created 2023-05-14 13:55:12">2023-05-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/12/pytorch-learn-01/" title="pytorch-learn-01"><img src="/img/cover/cover-01.png" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="pytorch-learn-01"/></a><div class="content"><a class="title" href="/2023/05/12/pytorch-learn-01/" title="pytorch-learn-01">pytorch-learn-01</a><time datetime="2023-05-12T15:25:52.000Z" title="Created 2023-05-12 23:25:52">2023-05-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/12/pytorch-learn-00/" title="pytorch-learn-00"><img src="/img/cover/cover-12.jpeg" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="pytorch-learn-00"/></a><div class="content"><a class="title" href="/2023/05/12/pytorch-learn-00/" title="pytorch-learn-00">pytorch-learn-00</a><time datetime="2023-05-12T15:10:52.000Z" title="Created 2023-05-12 23:10:52">2023-05-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/29/plcs/" title="plcs"><img src="/img/cover/cover-12.jpeg" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="plcs"/></a><div class="content"><a class="title" href="/2023/04/29/plcs/" title="plcs">plcs</a><time datetime="2023-04-29T15:53:13.000Z" title="Created 2023-04-29 23:53:13">2023-04-29</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/project/Pro-2.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Confetti-lxy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">世界很大,我想去看看</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
