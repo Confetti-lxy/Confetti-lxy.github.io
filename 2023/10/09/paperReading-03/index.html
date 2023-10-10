@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="zn-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文阅读-03 | 闲庭杂记</title><meta name="author" content="Confetti-lxy"><meta name="copyright" content="Confetti-lxy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="《Training data-efficient image transformers &amp; distillation through attention》的阅读和理解笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读-03">
+<meta property="og:url" content="http://blog.confetti-lxy.com/2023/10/09/paperReading-03/index.html">
+<meta property="og:site_name" content="闲庭杂记">
+<meta property="og:description" content="《Training data-efficient image transformers &amp; distillation through attention》的阅读和理解笔记">
+<meta property="og:locale" content="zn_CN">
+<meta property="og:image" content="http://blog.confetti-lxy.com/img/cover/cover-12.jpeg">
+<meta property="article:published_time" content="2023-10-09T00:16:32.000Z">
+<meta property="article:modified_time" content="2023-10-09T00:24:00.436Z">
+<meta property="article:author" content="Confetti-lxy">
+<meta property="article:tag" content="paperReading">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.confetti-lxy.com/img/cover/cover-12.jpeg"><link rel="shortcut icon" href="/img/common/favicon.ico"><link rel="canonical" href="http://blog.confetti-lxy.com/2023/10/09/paperReading-03/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文阅读-03',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-09 08:24:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/common/avatar.png" onerror="onerror=null;src='/img/common/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/PAPER/PAPER-3.jpeg')"><nav id="nav"><span id="blog-info"><a href="/" title="闲庭杂记"><span class="site-name">闲庭杂记</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">论文阅读-03</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-10-09T00:16:32.000Z" title="Created 2023-10-09 08:16:32">2023-10-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-10-09T00:24:00.436Z" title="Updated 2023-10-09 08:24:00">2023-10-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87%EF%BC%9A-cv%E9%A2%86%E5%9F%9F/">论文： cv领域</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>5min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="论文阅读-03"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>这篇是对《Training data-efficient image transformers &amp;
+distillation through
+attention》这篇论文的阅读和理解笔记，其中不乏疏忽或误解之处，发现者还请指正。</p>
+<h3 id="摘要">摘要</h3>
+<p>DeiT 是一个全 Transformer 的架构。其核心是提出了针对 ViT
+的教师-学生蒸馏训练策略，并提出了 token-based distillation 方法，使得
+Transformer 在视觉领域训练得又快又好。</p>
+<h3 id="介绍">介绍</h3>
+<p><strong>经典模型 ViT 的缺点和局限性</strong></p>
+<p>使用Transformer结构完成视觉任务的典型的例子比如说
+<strong>ViT</strong> 。Transformer的输入是一个<strong>序列
+(Sequence)</strong>，那么现在我们<strong>有的是一堆图片，如何转成序列呢？</strong>ViT所采用的思路是把图像<strong>分块
+(patches)</strong>，然后把每一块视为一个<strong>向量
+(vector)</strong>，所有的向量并在一起就成为了一个<strong>序列
+(Sequence)</strong>，ViT使用的数据集包括了一个巨大的包含了300 million
+images的<strong>JFT-300</strong>，这个数据集是私有的，即外部研究者无法复现实验。而且在ViT的实验中作者明确地提到：</p>
+<blockquote>
+<p><strong>" that transformers do not generalize well when trained on
+insufficient amounts of data. "</strong></p>
+</blockquote>
+<p>意思是当不使用JFT-300这样子的巨大的数据集时，效果是不如CNN模型的，也就反映出Transformer结构若想取得理想的性能和泛化能力就需要这样大的数据集。但是普通的研究者一没有如此extensive的计算资源，而没有如此巨大的数据集，所以无法复现对应的实验结果，这也是这篇文章
+(DeiT) 的motivation。简而言之，作者通过所提出的训练方案。只在 Imagenet
+上进行训练，就产生了一个有竞争力的无卷积
+transformers，而且在单台计算机上训练它的时间不到 3 天。DeiT (86M参数)在
+ImageNet 上实现了 83.1% 的 top-1 精度。</p>
+<p><strong>Data-efficient image Transformers (DeiT) 的优势</strong></p>
+<ul>
+<li>DeiT只需要8块GPUs训练2-3天 (53 hours train，20 hours
+finetune)。</li>
+<li>数据集只使用 ImageNet。</li>
+<li>不包含任何卷积 (Convolution)。</li>
+</ul>
+<p>这篇文章的主要贡献可以总结为三点：</p>
+<ol type="1">
+<li>仅使用 Transformer，不引入 Conv 的情况下也能达到 SOTA 效果。</li>
+<li>提出了基于 token 蒸馏的策略，针对 Transformer
+蒸馏方法超越传统蒸馏方法。</li>
+<li>DeiT 发现使用 Convnet 作为教师网络能够比使用 Transformer
+架构效果更好。</li>
+</ol>
+<h3 id="相关工作">相关工作</h3>
+<h4 id="vit">ViT</h4>
+<p>transformer架构开始逐渐使用于CV领域。</p>
+<p><img
+src="https://pic4.zhimg.com/v2-de4b025ad31ca06bcbd86134392dfc13_r.jpg" /></p>
+<h4 id="kd">KD</h4>
+<p>KD方法是一种模型压缩方法，是一种基于“教师-学生网络思想”的训练方式，由于其简单，有效，并且已经在工业界被广泛应用。</p>
+<p><img
+src="https://pic2.zhimg.com/v2-898a82322ac1e8834b35446af0af4ccd_r.jpg" /></p>
+<p><img src="/image/paperReading/PR-3/pic-1.png" /></p>
+<h3 id="模型架构">模型架构</h3>
+<p>distillation token
+允许我们的模型从教师网络的输出中学习，就像在常规的蒸馏中一样，同时也作为一种对class
+token的补充。</p>
+<p><img
+src="https://pic2.zhimg.com/v2-81ed877b7552e0d65b258cb659b39809_r.jpg" /></p>
+<p>上面的图可以再细化为以下的图：</p>
+<p><img
+src="https://pic4.zhimg.com/v2-113e443837587f41239d38cde9f0caf7_r.jpg" /></p>
+<p>作者发现一个有趣的现象，class token和distillation
+token是朝着不同的方向收敛的，对各个layer的这两个token计算余弦相似度，平均值只有0.06，不过随着网络会越来越大，在最后一层是0.93，也就是相似但不相同。
+这是预料之中的，因为他们的目标是生产相似但不相同的目标。</p>
+<p>作者做了个实验来验证这个确实distillation token有给模型add
+something。就是简单地增加一个class token来代替distillation
+token，然后发现，即使对这两个class
+token进行独立的随机初始化，它们最终会收敛到同一个向量
+(余弦相似度为0.999)，且性能没有明显提升。</p>
+<p>在<strong>测试时</strong>，我们有class
+token的输出向量，有distillation
+token的输出向量，它们经过linear层都可以转化成预测结果，那么最终的预测结果怎么定呢？可以简单地把二者的softmax结果相加来得到预测结果。</p>
+<h3 id="实验">实验</h3>
+<p>与以前看过的论文不同，这篇论文的实验篇幅特别长，占到了一半以上（可能是想掩盖创新点不足？🤔️）</p>
+<h4 id="teacher-model对比">Teacher model对比</h4>
+<p>作者首先观察到使用 CNN 作为 teacher 比 transformer 作为 teacher
+的性能更优。下图中对比了 teacher 网络使用 DeiT-B 和几个 CNN 模型 RegNetY
+时，得到的 student 网络的预训练性能以及 finetune 之后的性能。</p>
+<p>其中，DeiT-B 384 代表使用分辨率为 384×384 的图像 finetune
+得到的模型，最后的那个小蒸馏符号 alembic sign
+代表蒸馏以后得到的模型。</p>
+<p><img
+src="https://pic2.zhimg.com/v2-ccd968b2ba47cdfff9e1186c1e87a88d_r.jpg" /></p>
+<h4 id="蒸馏方法对比">蒸馏方法对比</h4>
+<p>下图是不同蒸馏策略的性能对比，label
+代表有监督学习，前3行分别是不使用蒸馏，使用soft蒸馏和使用hard蒸馏的性能对比。前3行不使用
+Distillation Token 进行训练，只是相当于在原来 ViT
+的基础上给损失函数加上了蒸馏部分。</p>
+<p>对于Transformer来讲，硬蒸馏的性能明显优于软蒸馏，即使只使用 class
+token，不使用 distill token，硬蒸馏达到 83.0%，而软蒸馏的精度为
+81.8%。</p>
+<p><img
+src="https://pic4.zhimg.com/v2-510fd006d350f150bf348f8b7d0829f7_r.jpg" /></p>
+<p>从最后两列 B224 和 B384
+看出，以更高的分辨率进行微调有助于减少方法之间的差异。这可能是因为在微调时，作者不使用教师信息。随着微调，class
+token 和 Distillation Token 之间的相关性略有增加。</p>
+<p>除此之外，蒸馏模型在 accuracy 和 throughput 之间的 trade-off 甚至优于
+teacher 模型，这也反映了蒸馏的有趣之处。</p>
+<h4 id="学习情况">学习情况</h4>
+<p>作者分析了一下蒸馏前的DeiT，CNN
+teacher和蒸馏后的DeiT之间决策的不一致性。如图11所示，6行6列。行列交叉值为行列这2个设置之间决策的不一致性。用distillation
+token分类的DeiT与CNN的不一致性比用class
+token的更小，不出意外地，两个都用的DeiT居中。通过第2行可知，蒸馏后的DeiT与CNN的不一致性比蒸馏前的DeiT更小。</p>
+<p><img
+src="https://pic1.zhimg.com/v2-6094c41b5f3f922ba3b83f67e052b718_r.jpg" /></p>
+<h4 id="性能对比">性能对比</h4>
+<p><img
+src="https://pic1.zhimg.com/v2-337555d983cbaa4a48c6df3052b2fbe8_r.jpg" /></p>
+<p>如上图所示为不同模型性能的数值比较。</p>
+<h4 id="迁移学习性能">迁移学习性能</h4>
+<p>下图一所示为不同任务的数据集，图二为DeiT迁移到不同任务的性能，即不同模型迁移学习的能力对比，对比的所有模型均使用ImageNet作为预训练，包括一些CNN模型。</p>
+<p><img
+src="https://pic4.zhimg.com/v2-59b6008596e107ca4e707a36736bd793_r.jpg" /></p>
+<p><img
+src="https://pic2.zhimg.com/v2-805a3127a98bb19c52fcfea091f87ed1_r.jpg" /></p>
+<h4 id="对比实验和超参数">对比实验和超参数</h4>
+<p>DeiT为我们提供了<strong>一组优秀的超参数</strong>，如下图所示。它可以在不改变ViT模型结构的前提下实现涨点。</p>
+<p><img
+src="https://pic1.zhimg.com/80/v2-0ea40f36b6222876f1ede582561dc434_1440w.webp" /></p>
+<p>给出了一些个数据增强的方法：</p>
+<p><img
+src="https://pic4.zhimg.com/v2-136535b2629b711fb99db94f850c966b_r.jpg" /></p>
+<p>mixup之后的图片的label不再是单一的label，而是soft-label，比如[cat,dog]=[0.5,0.5]</p>
+<p>cutmix之后的图片label是按所占据的比例给的，比如[cat,dog]=[0.3,0.7]</p>
+<p>下图就是一些个对比实验</p>
+<p><img
+src="https://pic4.zhimg.com/v2-ba35b6ed472d46977b114ea93b35df9f_r.jpg" /></p>
+<h3 id="总结">总结</h3>
+<p>DeiT 模型（8600万参数）仅用一台 GPU 服务器在 53 hours train，20 hours
+finetune，仅使用 ImageNet 就达到了 84.2 top-1
+准确性，而无需使用任何外部数据进行训练，性能与最先进的卷积神经网络（CNN）可以抗衡。其核心是提出了针对
+ViT 的教师-学生蒸馏训练策略，并提出了 token-based distillation
+方法，使得 Transformer 在视觉领域训练得又快又好。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Confetti-lxy">Confetti-lxy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://blog.confetti-lxy.com/2023/10/09/paperReading-03/">http://blog.confetti-lxy.com/2023/10/09/paperReading-03/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/paperReading/">paperReading</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/cover-12.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/09/20/paperReading-02/" title="论文阅读-02"><img class="cover" src="/img/cover/cover-06.jpeg" onerror="onerror=null;src='/img/common/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">论文阅读-02</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/09/12/paperReading-01/" title="论文阅读-01"><img class="cover" src="/img/cover/cover-01.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-12</div><div class="title">论文阅读-01</div></div></a></div><div><a href="/2023/09/20/paperReading-02/" title="论文阅读-02"><img class="cover" src="/img/cover/cover-06.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-20</div><div class="title">论文阅读-02</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/common/avatar.png" onerror="this.onerror=null;this.src='/img/common/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Confetti-lxy</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Confetti-lxy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Confetti-lxy" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3038454387@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">总要记些什么证明我来过</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vit"><span class="toc-number">3.1.</span> <span class="toc-text">ViT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#kd"><span class="toc-number">3.2.</span> <span class="toc-text">KD</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="toc-number">4.</span> <span class="toc-text">模型架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-number">5.</span> <span class="toc-text">实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#teacher-model%E5%AF%B9%E6%AF%94"><span class="toc-number">5.1.</span> <span class="toc-text">Teacher model对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%92%B8%E9%A6%8F%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="toc-number">5.2.</span> <span class="toc-text">蒸馏方法对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E6%83%85%E5%86%B5"><span class="toc-number">5.3.</span> <span class="toc-text">学习情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94"><span class="toc-number">5.4.</span> <span class="toc-text">性能对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E6%80%A7%E8%83%BD"><span class="toc-number">5.5.</span> <span class="toc-text">迁移学习性能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E5%AE%9E%E9%AA%8C%E5%92%8C%E8%B6%85%E5%8F%82%E6%95%B0"><span class="toc-number">5.6.</span> <span class="toc-text">对比实验和超参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/09/paperReading-03/" title="论文阅读-03"><img src="/img/cover/cover-12.jpeg" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="论文阅读-03"/></a><div class="content"><a class="title" href="/2023/10/09/paperReading-03/" title="论文阅读-03">论文阅读-03</a><time datetime="2023-10-09T00:16:32.000Z" title="Created 2023-10-09 08:16:32">2023-10-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/20/paperReading-02/" title="论文阅读-02"><img src="/img/cover/cover-06.jpeg" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="论文阅读-02"/></a><div class="content"><a class="title" href="/2023/09/20/paperReading-02/" title="论文阅读-02">论文阅读-02</a><time datetime="2023-09-20T06:48:28.000Z" title="Created 2023-09-20 14:48:28">2023-09-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/12/paperReading-01/" title="论文阅读-01"><img src="/img/cover/cover-01.png" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="论文阅读-01"/></a><div class="content"><a class="title" href="/2023/09/12/paperReading-01/" title="论文阅读-01">论文阅读-01</a><time datetime="2023-09-12T09:05:13.000Z" title="Created 2023-09-12 17:05:13">2023-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/27/%E9%9A%8F%E8%AE%B0/" title="Transfer to CS"><img src="/img/cover/cover-07.png" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="Transfer to CS"/></a><div class="content"><a class="title" href="/2023/08/27/%E9%9A%8F%E8%AE%B0/" title="Transfer to CS">Transfer to CS</a><time datetime="2023-08-27T03:15:04.000Z" title="Created 2023-08-27 11:15:04">2023-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/sperf/" title="sperf"><img src="/img/cover/cover-08.jpeg" onerror="this.onerror=null;this.src='/img/common/404.jpg'" alt="sperf"/></a><div class="content"><a class="title" href="/2023/08/25/sperf/" title="sperf">sperf</a><time datetime="2023-08-25T15:53:13.000Z" title="Created 2023-08-25 23:53:13">2023-08-25</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/PAPER/PAPER-3.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Confetti-lxy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">世界很大,我想去看看</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
