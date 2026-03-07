@@ -1,61 +1,60 @@
 primary_name: "Xingyu Luo"
 secondary_name: ""
-navbar_name: "Your Name"
+navbar_name: "Confetti"
 
 positions:
-- name: Title or Position
-- name: Affiliation Name
-  logo: /assets/images/badges/MIT_Social_circle.png  # Logo is optional
+- name: PhD Student
+- name: Nanjing University
+  logo: /assets/images/badges/NJU.png  # Logo is optional
 
 
-email: "your@email.com"
+email: "652025330020@smail.nju.edu.cn"
 # cv_link: link-to-your-cv-file
-gscholar: xFmQpf4AAAAJ  # This is an example, replace it with your own Google Scholar ID
-github: your_github_id
-twitter: your_twitter_id  # Do not include the '@' symbol
+# gscholar: xFmQpf4AAAAJ  # This is an example, replace it with your own Google Scholar ID
+github: Confetti-lxy
+# twitter: your_twitter_id  # Do not include the '@' symbol
 # wechat_qrcode: /assets/images/etc/wechat.jpg
 # wechat_prompt: >-
 #   Please tell me your <strong>name</strong> and <strong>affiliation</strong> (current or past) when adding my wechat. Thanks!
 # linkedin: your-linked-in-id
-# orcid: 0000-0000-0000-0000
+orcid: 0009-0004-8211-9693
 
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    A <a href="https://en.wikipedia.org/wiki/Bicolor_cat" target="_blank">bicolor cat</a> is a cat with white fur combined with fur of some other colour, for example solid black, tabby, or colourpointed.
+    <em><strong> I'm now a Ph.D student in <a href="http://mcg.nju.edu.cn/index.html">MCG Group</a>, <a href="https://cs.nju.edu.cn/">Computer Science</a>, <a href="https://www.nju.edu.cn/main.htm">Nanjing University</a>, under the supervision of <a href="https://njulj.github.io/">Asst. Jie Liu</a>, <a href="https://tangjie-njucs.github.io/">Assoc. Prof. Jie Tang</a>, <a href="https://wanglimin.github.io/">Prof. Limin Wang</a> and <a href="https://mcg.nju.edu.cn/member/gswu/en/index.html">Prof. Gangshan Wu</a>.</strong></em> 
+    <em>Before that, I also spent wonderful years as an undergraduate in the Department of Computer Science and Technology, Nanjing University, and received my Bachelor of Science in Jun 2025.</em>
   </p>
   <p>
-    There are various patterns of a bicolour cat. These range from the Van-patterned (colour on the crown of the head 
-    and the tail only) to a solid colour with a throat locket or medallion. Bicolour coats are found in many cat breeds, 
-    as well as being common in domestic longhair and domestic shorthair cats.
+    <em>My research interests include <strong>Computer Vision and Deep Learning</strong>. I have a long-standing focus on Multiple Object Tracking, and my current work explores Multimodal Learning and Generative Models.</em>
   </p>
 
-portrait_url: /assets/images/photos/portrait.jpg
-portrait_caption: >-
-  Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
+portrait_url: /assets/images/photos/Kristen.png
+# portrait_caption: >-
+  # Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
 
 education:
-- name: Massachusetts Institute of Technology
-  logo: /assets/images/badges/MIT_Social_circle.png
+- name: Nanjing University
+  logo: /assets/images/badges/NJU.png
   position: >- 
     Department of Electrical Engineering and Computer Science <br/>
     Ph.D. Student
   date: Sep. 2024 - present
-- name: Peking University
-  logo: /assets/images/badges/PKU_red.png
+- name: Nanjing University
+  logo: /assets/images/badges/NJU.png
   position: B.S. in Computer Science
-  date: Sep. 2019 - Jul. 2021
+  date: Sep. 2021 - Jul. 2025
 
-# experience:
-# - name: Peking University
-#   logo: /assets/images/badges/PKU_red.png
-#   position: Research Intern
-#   date: Sep. 2019 - Jul. 2021
+experience:
+- name: Taobao and Tmall Group, Alibaba
+  logo: /assets/images/badges/Ali.png
+  position: Java Software Engineer
+  date: June. 2024 - Sep. 2024
 
 awards:
-- name: Award Name 2
+- name: People's Scholarship
   date: 2024
-- name: Award Name 1 
-  date: 2021
-- name: A quick brown fox jumps over the lazy dog and runs away award
-  date: 2021
+- name: People's Scholarship
+  date: 2023
+- name: Agilent Scholarship 
+  date: 2022
